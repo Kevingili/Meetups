@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Cinema\Entity;
+namespace Gili\Entity;
 
 use Ramsey\Uuid\Uuid;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Film
+ * Class Meetup
  *
  * Attention : Doctrine génère des classes proxy qui étendent les entités, celles-ci ne peuvent donc pas être finales !
  *
  * @package Application\Entity
- * @ORM\Entity(repositoryClass="\Cinema\Repository\FilmRepository")
- * @ORM\Table(name="films")
+ * @ORM\Entity(repositoryClass="\Gili\Repository\MeetupRepository")
+ * @ORM\Table(name="meetups")
  */
-class Film
+class Meetup
 {
     /**
      * @ORM\Id
@@ -34,11 +34,23 @@ class Film
      */
     private $description = '';
 
-    public function __construct(string $title, string $description = '')
+    /**
+     * @ORM\Column(type="string", length=50, nullable=false)
+     */
+    private $date_begin;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=false)
+     */
+    private $date_end;
+
+    public function __construct(string $title, string $description = '', string $date_begin = '', string $date_end = '')
     {
         $this->id = Uuid::uuid4()->toString();
         $this->title = $title;
         $this->description = $description;
+        $this->date_begin = $date_begin;
+        $this->date_end = $date_end;
     }
 
     /**
@@ -70,5 +82,25 @@ class Film
     public function setTitle(string $title) : void
     {
         $this->title = $title;
+    }
+
+    public function getDateBegin() : string
+    {
+        return $this->date_begin;
+    }
+
+    public function setDateBegin(string $date_begin) : void
+    {
+        $this->date_begin = $date_begin;
+    }
+
+    public function getDateEnd() : string
+    {
+        return $this->date_end;
+    }
+
+    public function setDateEnd(string $date_end) : void
+    {
+        $this->date_end = $date_end;
     }
 }

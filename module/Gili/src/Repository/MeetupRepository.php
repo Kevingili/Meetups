@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Cinema\Repository;
+namespace Gili\Repository;
 
-use Cinema\Entity\Film;
+use Gili\Entity\Meetup;
 use Doctrine\ORM\EntityRepository;
 
-final class FilmRepository extends EntityRepository
+final class MeetupRepository extends EntityRepository
 {
-    public function save(Film $film) : void
+    public function save(Meetup $meetup) : void
     {
         //Faire le update
-        $this->getEntityManager()->persist($film);
-        $this->getEntityManager()->flush($film);
+        $this->getEntityManager()->persist($meetup);
+        $this->getEntityManager()->flush($meetup);
 
     }
 

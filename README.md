@@ -1,18 +1,18 @@
-CRUD Films
+CRUD Meetups
 ---------------------------------
 
 ## Présentation de l'application
 
 L'acronyme informatique anglais CRUD (pour create, read, update, delete) (parfois appelé SCRUD avec un "S" pour search) désigne les quatre opérations de base pour la persistance des données, en particulier le stockage d'informations en base de données.
 
-Ce projet est donc une application en ZF3 qui permet de voir, créer, modifier et supprimer des films.
+Ce projet est donc une application en ZF3 qui permet de voir, créer, modifier et supprimer des meetups.
 
 ## Commandes utiles
 
 ```
-git clone https://github.com/Kevingili/Films.git
+git clone https://github.com/Kevingili/Meetups.git
 
-cd Films/
+cd Meetups/
 
 docker-compose up -d
 

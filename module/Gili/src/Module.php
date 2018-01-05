@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cinema;
+namespace Gili;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 

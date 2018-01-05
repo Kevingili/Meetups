@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-use Cinema\Form\FilmForm;
-use Cinema\Form\FilmFormFactory;
+use Gili\Form\MeetupForm;
+use Gili\Form\MeetupFormFactory;
 use Zend\Router\Http\Literal;
-use Cinema\Controller;
+use Gili\Controller;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
     'router' => [
         'routes' => [
-            'films' => [
+            'meetups' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route'    => '/films',
+                    'route'    => '/meetups',
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
@@ -61,21 +61,21 @@ return [
     ],
     'service_manager' => [
         'factories' => [
-            FilmForm::class => FilmFormFactory::class,
+            MeetupForm::class => MeetupFormFactory::class,
         ],
     ],
     'view_manager' => [
         'template_map' => [
-            'cinema/index/index' => __DIR__ . '/../view/cinema/index/index.phtml',
-            'cinema/index/add' => __DIR__ . '/../view/cinema/index/add.phtml',
-            'cinema/index/edit' => __DIR__ . '/../view/cinema/index/edit.phtml',
-            'cinema/index/delete' => __DIR__ . '/../view/cinema/index/delete.phtml',
+            'gili/index/index' => __DIR__ . '/../view/gili/index/index.phtml',
+            'gili/index/add' => __DIR__ . '/../view/gili/index/add.phtml',
+            'gili/index/edit' => __DIR__ . '/../view/gili/index/edit.phtml',
+            'gili/index/delete' => __DIR__ . '/../view/gili/index/delete.phtml',
         ],
     ],
     'doctrine' => [
         'driver' => [
             // defines an annotation driver with two paths, and names it `my_annotation_driver`
-            'cinema_driver' => [
+            'gili_driver' => [
                 'class' => \Doctrine\ORM\Mapping\Driver\AnnotationDriver::class,
                 'cache' => 'array',
                 'paths' => [
@@ -88,7 +88,7 @@ return [
             'orm_default' => [
                 'drivers' => [
                     // register `application_driver` for any entity under namespace `Application\Entity`
-                    'Cinema\Entity' => 'cinema_driver',
+                    'Gili\Entity' => 'gili_driver',
                 ],
             ],
         ],

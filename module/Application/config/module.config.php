@@ -24,16 +24,6 @@ return [
                     ],
                 ],
             ],
-            'ping' => [
-                'type' => Literal::class,
-                'options' => [
-                    'route'    => '/ping',
-                    'defaults' => [
-                        'controller' => Controller\PingController::class,
-                        'action'     => 'ping',
-                    ],
-                ],
-            ],
             'application' => [
                 'type'    => Segment::class,
                 'options' => [
@@ -49,7 +39,6 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => InvokableFactory::class,
-            Controller\PingController::class => Controller\PingControllerFactory::class,
         ],
     ],
     'service_manager' => [

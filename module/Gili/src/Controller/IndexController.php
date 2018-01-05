@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Cinema\Controller;
+namespace Gili\Controller;
 
-use Cinema\Entity\Film;
-use Cinema\Repository\FilmRepository;
-use Cinema\Form\FilmForm;
+use Gili\Entity\Meetup;
+use Gili\Repository\MeetupRepository;
+use Gili\Form\MeetupForm;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -14,40 +14,40 @@ use Zend\View\Model\ViewModel;
 final class IndexController extends AbstractActionController
 {
     /**
-     * @var FilmRepository
+     * @var MeetupRepository
      */
-    private $filmRepository;
+    private $meetupRepository;
 
     /**
-     * @var FilmForm
+     * @var MeetupForm
      */
-    private $filmForm;
+    private $meetupForm;
 
-    public function __construct(FilmRepository $filmRepository, FilmForm $filmForm)
+    public function __construct(MeetupRepository $meetupRepository, MeetupForm $meetupForm)
     {
-        $this->filmRepository = $filmRepository;
-        $this->filmForm = $filmForm;
+        $this->meetupRepository = $meetupRepository;
+        $this->meetupForm = $meetupForm;
     }
 
     public function indexAction()
     {
         return new ViewModel([
-            'films' => $this->filmRepository->findBy([], ['title' => 'asc']),
+            'meetups' => $this->meetupRepository->findBy([], ['title' => 'asc']),
         ]);
     }
 
     public function addAction()
     {
-        $form = $this->filmForm;
-        $form->bind(new Film('', ''));
+        $form = $this->meetupForm;
+        $form->bind(new Meetup('', ''));
         /* @var $request Request */
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $film = $form->getData();
-                $this->filmRepository->save($film);
-                return $this->redirect()->toRoute('films');
+                $meetup = $form->getData();
+                $this->meetupRepository->save($meetup);
+                return $this->redirect()->toRoute('meetups');
             }
         }
 
@@ -59,23 +59,23 @@ final class IndexController extends AbstractActionController
     }
     public function editAction()
     {
-        $form = $this->filmForm;
+        $form = $this->meetupForm;
 
 
         $id = $this->params()->fromRoute('params');
 
-        $film = $this->filmRepository->find($id);
+        $meetup = $this->meetupRepository->find($id);
 
-        $form->bind($film);
+        $form->bind($meetup);
 
         /* @var $request Request */
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setData($request->getPost());
             if ($form->isValid()) {
-                $film = $form->getData();
-                $this->filmRepository->save($film);
-                return $this->redirect()->toRoute('films');
+                $meetup = $form->getData();
+                $this->meetupRepository->save($meetup);
+                return $this->redirect()->toRoute('meetups');
             }
         }
 
@@ -83,7 +83,7 @@ final class IndexController extends AbstractActionController
 
         return new ViewModel([
             'form' => $form,
-            'film' => $film,
+            'meetup' => $meetup,
         ]);
     }
     public function deleteAction()
@@ -91,9 +91,9 @@ final class IndexController extends AbstractActionController
 
         $id = $this->params()->fromRoute('params');
 
-        $this->filmRepository->delete($id);
+        $this->meetupRepository->delete($id);
 
-        return $this->redirect()->toRoute('films');
+        return $this->redirect()->toRoute('meetups');
 
     }
 }

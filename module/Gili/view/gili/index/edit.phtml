@@ -1,7 +1,7 @@
-<h1>Add a film</h1>
+<h1>Edit a meetup</h1>
 
 <?php
-    $form = $this->form; /* @var $form \Zend\Form\Form */
+$form = $this->form; /* @var $form \Zend\Form\Form */
 ?>
 
 <?= $this->form()->openTag($form); ?>
@@ -10,9 +10,17 @@
 
 <br>
 
+<?= $this->formRow($form->get('date_begin')->setAttribute('class', 'form-control')); ?>
+
+<br>
+
+<?= $this->formRow($form->get('date_end')->setAttribute('class', 'form-control')); ?>
+
+<br>
+
 <?= $this->formRow($form->get('description')->setAttribute('class', 'form-control')
-                                            ->setAttribute('rows', '10')
-                                            ->setAttribute('cols', '50')) ?>
+    ->setAttribute('rows', '10')
+    ->setAttribute('cols', '50')) ?>
 
 <br>
 

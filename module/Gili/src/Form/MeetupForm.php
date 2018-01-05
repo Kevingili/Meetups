@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Cinema\Form;
+namespace Gili\Form;
 
-use Cinema\Entity\Film;
+use Gili\Entity\Meetup;
 use Doctrine\ORM\EntityManager;
 use Zend\Form\Element;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\Validator\StringLength;
+use Zend\Validator\Date;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
-class FilmForm extends Form implements InputFilterProviderInterface
+class MeetupForm extends Form implements InputFilterProviderInterface
 {
     public function __construct(EntityManager $entityManager)
     {
-        parent::__construct('film');
+        parent::__construct('meetup');
 
-        $hydrator = new DoctrineHydrator($entityManager, Film::class);
+        $hydrator = new DoctrineHydrator($entityManager, Meetup::class);
         $this->setHydrator($hydrator);
 
         $this->add([
@@ -26,6 +27,22 @@ class FilmForm extends Form implements InputFilterProviderInterface
             'name' => 'title',
             'options' => [
                 'label' => 'Title',
+            ],
+        ]);
+
+        $this->add([
+            'type' => Element\Text::class,
+            'name' => 'date_begin',
+            'options' => [
+                'label' => 'Date Begin',
+            ],
+        ]);
+
+        $this->add([
+            'type' => Element\Text::class,
+            'name' => 'date_end',
+            'options' => [
+                'label' => 'Date End',
             ],
         ]);
 
@@ -57,6 +74,31 @@ class FilmForm extends Form implements InputFilterProviderInterface
                         'options' => [
                             'min' => 2,
                             'max' => 45,
+                        ],
+                    ],
+                ],
+            ],
+            'date_begin' => [
+                'validators' => [
+                    [
+                        'name' => Date::class,
+                    ],
+                ],
+            ],
+            'date_end' => [
+                'validators' => [
+                    [
+                        'name' => Date::class,
+                    ],
+                ],
+            ],
+            'description' => [
+                'validators' => [
+                    [
+                        'name' => StringLength::class,
+                        'options' => [
+                            'min' => 2,
+                            'max' => 500,
                         ],
                     ],
                 ],
