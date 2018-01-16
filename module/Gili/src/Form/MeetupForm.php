@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManager;
 use Zend\Form\Element;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilterProviderInterface;
+use Zend\Validator\Callback;
 use Zend\Validator\StringLength;
 use Zend\Validator\Date;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
@@ -83,6 +84,14 @@ class MeetupForm extends Form implements InputFilterProviderInterface
                     [
                         'name' => Date::class,
                     ],
+                    [
+                        'name' => Callback::class,
+                        'options' => [
+                            'callback' => function($value, $context) {
+                                return strtotime($context['date_end']) > strtotime($context['date_begin']);
+                            },
+                        ],
+                    ]
                 ],
             ],
             'date_end' => [
