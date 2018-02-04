@@ -34,7 +34,7 @@ docker-compose run --rm database mysql -h database -u demo -p demo
 
 ## Partie test
 
-####Selenium
+##Selenium
 
 Pour les tests Selenium il faut installer l'extension chrome suivante : https://chrome.google.com/webstore/detail/selenium-ide/mooikfkahbdckldjjndioackbalphokd
 Malheureusement elle n'est pas disponible pour la version 57 de Firefox
@@ -45,7 +45,7 @@ Il faut ensuite importer le projet "Selenium Meetup.side" et on accède ensuite 
   - TestEditMeetup
   - TestRemoveMeetup
   
-####Behat
+##Behat
 
 Pour les tests behat une fois le docker-compose up -d lancer, il suffit de lancer la commande suivante
 ```
