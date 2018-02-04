@@ -30,7 +30,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "ApplicationTest\\": "module/Application/test/"
+            "ApplicationTest\\": "module/Application/test/",
+            "GiliTest\\": "module/Gili/test/"
         }
     },
     "extra": [],
@@ -47,6 +48,8 @@
         "test": "phpunit"
     },
     "require-dev": {
-        "symfony/var-dumper": "^4.0"
+        "symfony/var-dumper": "^4.0",
+        "zendframework/zend-test": "^3.1",
+        "behat/behat": "^3.4"
     }
 }
