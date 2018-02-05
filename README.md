@@ -106,3 +106,8 @@ Feature: Meetup
 ```
 
 Si vous souhaitez modifier les scénarios ou les tests, il suffit de se rendre dans le dossier features
+
+### Tests unitaires
+```
+docker-compose run --rm zf ./vendor/bin/phpunit --testsuite Gili
+```
